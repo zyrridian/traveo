@@ -50,7 +50,8 @@ jobs:
           tag: "latest"
           name: "Development Build"
           body: "Auto-generated development build for the latest commit on main."
-          prerelease: true
+          prerelease: false
+          makeLatest: true
           allowUpdates: true
           replacesArtifacts: true
           commit: ${{ github.sha }}

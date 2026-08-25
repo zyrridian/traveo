@@ -25,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF0066FF),
+      backgroundColor: const Color(0xFF006AFF),
       body: SafeArea(
         bottom: false,
         child: Stack(
@@ -33,7 +33,6 @@ class _SplashScreenState extends State<SplashScreen> {
             const Center(
               child: TraveoLogo(size: 80),
             ),
-            
             Positioned(
               left: 0,
               right: 0,
@@ -61,9 +60,9 @@ class _SplashScreenState extends State<SplashScreen> {
                               TextSpan(text: 'world with us'),
                             ],
                           ),
-                          style: TextStyle(color: Colors.white, fontSize: 14, height: 1.3),
+                          style: TextStyle(
+                              color: Colors.white, fontSize: 14, height: 1.3),
                         ),
-                        
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: const [
@@ -76,16 +75,16 @@ class _SplashScreenState extends State<SplashScreen> {
                             ),
                             Text(
                               'Information',
-                              style: TextStyle(color: Colors.white, fontSize: 12),
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 12),
                             ),
                           ],
                         ),
                       ],
                     ),
                   ),
-                  
                   Transform.translate(
-                    offset: const Offset(0, 15), 
+                    offset: const Offset(0, 15),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: FittedBox(

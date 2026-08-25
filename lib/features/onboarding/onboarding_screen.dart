@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:traveo/core/widgets/traveo_logo.dart';
+import 'package:traveo/core/widgets/traveo_button.dart';
+import 'package:traveo/features/auth/presentation/screens/auth_selection_screen.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -43,11 +45,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         curve: Curves.easeIn,
       );
     } else {
-      // Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const HomeScreen()));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const AuthSelectionScreen()));
     }
   }
 
-  void _skip() {}
+  void _skip() {
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const AuthSelectionScreen()));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -148,36 +152,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         ),
                       ),
                       const SizedBox(height: 32),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 56,
-                        child: ElevatedButton(
-                          onPressed: _nextPage,
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white,
-                            foregroundColor: Colors.black,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(28),
-                            ),
-                            elevation: 0,
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                _currentPage == _onboardingData.length - 1
-                                    ? "Plan Your Trip"
-                                    : "Continue",
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                              const SizedBox(width: 8),
-                              const Icon(Icons.arrow_outward, size: 20),
-                            ],
-                          ),
-                        ),
+                      TraveoButton(
+                        text: _currentPage == _onboardingData.length - 1
+                            ? "Plan Your Trip"
+                            : "Continue",
+                        onPressed: _nextPage,
+                        backgroundColor: Colors.white,
+                        foregroundColor: Colors.black,
+                        iconColor: Colors.black,
                       ),
                       const SizedBox(height: 16),
                       TextButton(
