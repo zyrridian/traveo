@@ -3,13 +3,21 @@ import 'package:phosphoricons_flutter/phosphoricons_flutter.dart';
 import 'package:traveo/core/models/stay_model.dart';
 import 'package:traveo/core/theme/app_theme.dart';
 
-class StayCard extends StatelessWidget {
+class StayCard extends StatefulWidget {
   final StayModel stay;
 
   const StayCard({super.key, required this.stay});
 
   @override
+  State<StayCard> createState() => _StayCardState();
+}
+
+class _StayCardState extends State<StayCard> {
+  bool _isFavorite = false;
+
+  @override
   Widget build(BuildContext context) {
+    final stay = widget.stay;
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
       decoration: BoxDecoration(
@@ -70,13 +78,24 @@ class StayCard extends StatelessWidget {
                 right: 12,
                 child: Row(
                   children: [
-                    CircleAvatar(
-                      backgroundColor: Colors.white,
-                      radius: 20,
-                      child: const Icon(
-                        PhosphorIcons.heart,
-                        color: AppTheme.textColorLight,
-                        size: 20,
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _isFavorite = !_isFavorite;
+                        });
+                      },
+                      child: CircleAvatar(
+                        backgroundColor: Colors.white,
+                        radius: 20,
+                        child: Icon(
+                          _isFavorite
+                              ? PhosphorIcons.heartFill
+                              : PhosphorIcons.heart,
+                          color: _isFavorite
+                              ? Colors.red
+                              : AppTheme.textColorLight,
+                          size: 20,
+                        ),
                       ),
                     ),
                     const SizedBox(width: 8),

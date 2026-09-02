@@ -7,6 +7,7 @@ environment:
   sdk: ^3.6.2
 
 dependencies:
+  cached_network_image: ^3.4.1
   flutter:
     sdk: flutter
   phosphoricons_flutter: ^1.0.0

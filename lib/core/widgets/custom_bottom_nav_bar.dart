@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:phosphoricons_flutter/phosphoricons_flutter.dart';
 import 'package:traveo/core/theme/app_theme.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
@@ -15,60 +16,83 @@ class CustomBottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(24),
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(40),
+        borderRadius: BorderRadius.circular(36),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 20,
-            offset: const Offset(0, 10),
+            color: Colors.black.withOpacity(0.02),
+            blurRadius: 2,
+            offset: const Offset(2, 2),
           ),
         ],
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          _buildNavItem(0, Icons.home_outlined, Icons.home, 'Home'),
-          _buildNavItem(1, Icons.account_balance_wallet_outlined, Icons.account_balance_wallet, 'Wallet'),
-          _buildNavItem(2, Icons.stars_outlined, Icons.stars, 'Rewards'),
-          _buildNavItem(3, Icons.person_outline, Icons.person, 'Profile'),
+          _buildNavItem(0, PhosphorIcons.house, PhosphorIcons.house, 'Home'),
+          _buildNavItem(
+              1, PhosphorIcons.wallet, PhosphorIcons.wallet, 'Finance'),
+          _buildNavItem(
+              2, PhosphorIcons.ticket, PhosphorIcons.ticket, 'My Trips'),
+          _buildNavItem(
+              3, PhosphorIcons.person, PhosphorIcons.person, 'Profile'),
         ],
       ),
     );
   }
 
-  Widget _buildNavItem(int index, IconData unselectedIcon, IconData selectedIcon, String label) {
+  Widget _buildNavItem(
+      int index, IconData unselectedIcon, IconData selectedIcon, String label) {
     final isSelected = currentIndex == index;
     return GestureDetector(
       onTap: () => onTap(index),
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+        duration: const Duration(milliseconds: 350),
+        curve: Curves.easeInOutCubic,
+        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 14),
         decoration: BoxDecoration(
           color: isSelected ? AppTheme.primaryBlue : Colors.transparent,
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(36),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
-              isSelected ? selectedIcon : unselectedIcon,
-              color: isSelected ? Colors.white : const Color(0xFFBDBDBD),
-              size: 24,
-            ),
-            if (isSelected) ...[
-              const SizedBox(width: 8),
-              Text(
-                label,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 14,
-                ),
+            AnimatedSwitcher(
+              duration: const Duration(milliseconds: 350),
+              transitionBuilder: (child, animation) => FadeTransition(
+                opacity: animation,
+                child: ScaleTransition(scale: animation, child: child),
               ),
-            ]
+              child: Icon(
+                isSelected ? selectedIcon : unselectedIcon,
+                key: ValueKey<bool>(isSelected),
+                color: isSelected ? Colors.white : const Color(0xFFBDBDBD),
+                size: 24,
+              ),
+            ),
+            AnimatedSize(
+              duration: const Duration(milliseconds: 350),
+              curve: Curves.easeInOutCubic,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (isSelected) ...[
+                    const SizedBox(width: 8),
+                    Text(
+                      label,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                        height: 1.24,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ]
+                ],
+              ),
+            ),
           ],
         ),
       ),

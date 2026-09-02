@@ -14,8 +14,8 @@ class _MainScreenState extends State<MainScreen> {
 
   final List<Widget> _screens = [
     const HomeScreen(),
-    const Center(child: Text('Wallet Screen')),
-    const Center(child: Text('Rewards Screen')),
+    const Center(child: Text('Finance Screen')),
+    const Center(child: Text('My Trips Screen')),
     const Center(child: Text('Profile Screen')),
   ];
 
@@ -25,7 +25,6 @@ class _MainScreenState extends State<MainScreen> {
       body: Stack(
         children: [
           _screens[_currentIndex],
-          
           Positioned(
             bottom: 0,
             left: 0,
