@@ -3,6 +3,8 @@ import 'package:phosphoricons_flutter/phosphoricons_flutter.dart';
 import 'package:traveo/core/constants/dummy_data.dart';
 import 'package:traveo/core/theme/app_theme.dart';
 import 'package:traveo/core/widgets/category_button.dart';
+import 'package:traveo/core/widgets/hero_search_bar.dart';
+import 'package:traveo/features/home/presentation/screens/search_screen.dart';
 import 'package:traveo/core/widgets/stay_card.dart';
 import 'package:traveo/core/widgets/traveo_logo.dart';
 
@@ -78,46 +80,24 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               const SizedBox(height: 24),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                decoration: BoxDecoration(
-                  color: AppTheme.lighterGray,
-                  borderRadius: BorderRadius.circular(36),
-                ),
-                child: Row(
-                  children: [
-                    const Icon(PhosphorIcons.mapPinFill,
-                        color: AppTheme.primaryBlue),
-                    const SizedBox(width: 8),
-                    const Text(
-                      'Bali',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 16,
-                        color: AppTheme.textColor,
-                      ),
+              HeroSearchBar(
+                readOnly: true,
+                onTap: () {
+                  Navigator.of(context).push(
+                    PageRouteBuilder(
+                      pageBuilder: (context, animation, secondaryAnimation) =>
+                          const SearchScreen(),
+                      transitionsBuilder:
+                          (context, animation, secondaryAnimation, child) {
+                        return FadeTransition(
+                          opacity: animation,
+                          child: child,
+                        );
+                      },
+                      transitionDuration: const Duration(milliseconds: 300),
                     ),
-                    const SizedBox(width: 16),
-                    Container(
-                      width: 1,
-                      height: 24,
-                      color: const Color(0xFF000000).withOpacity(.06),
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: TextField(
-                        decoration: const InputDecoration(
-                          hintText: 'Where are you going?',
-                          hintStyle: TextStyle(
-                              color: AppTheme.textColorLight, fontSize: 14),
-                          border: InputBorder.none,
-                        ),
-                      ),
-                    ),
-                    const Icon(PhosphorIcons.magnifyingGlass,
-                        color: Color(0xFF9CA3AF)),
-                  ],
-                ),
+                  );
+                },
               ),
               const SizedBox(height: 24),
               Row(

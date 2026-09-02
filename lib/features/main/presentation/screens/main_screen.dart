@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:traveo/core/widgets/custom_bottom_nav_bar.dart';
+import 'package:traveo/features/budget/presentation/screens/budget_screen.dart';
 import 'package:traveo/features/home/presentation/screens/home_screen.dart';
+import 'package:traveo/features/profile/presentation/screens/profile_screen.dart';
+import 'package:traveo/features/trips/presentation/screens/my_trips_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -14,9 +17,9 @@ class _MainScreenState extends State<MainScreen> {
 
   final List<Widget> _screens = [
     const HomeScreen(),
-    const Center(child: Text('Finance Screen')),
-    const Center(child: Text('My Trips Screen')),
-    const Center(child: Text('Profile Screen')),
+    const BudgetScreen(),
+    const MyTripsScreen(),
+    const ProfileScreen(),
   ];
 
   @override
