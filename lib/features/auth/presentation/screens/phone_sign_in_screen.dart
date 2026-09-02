@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:traveo/core/widgets/traveo_logo.dart';
 import 'package:traveo/core/widgets/traveo_button.dart';
 import 'package:traveo/features/auth/presentation/screens/email_sign_in_screen.dart';
+import 'package:traveo/features/auth/presentation/screens/login_transition_screen.dart';
 
 class PhoneSignInScreen extends StatelessWidget {
   const PhoneSignInScreen({super.key});
@@ -106,7 +107,13 @@ class PhoneSignInScreen extends StatelessWidget {
               const SizedBox(height: 16),
               TraveoButton(
                 text: 'Continue',
-                onPressed: null,
+                onPressed: () {
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (_) => const LoginTransitionScreen()),
+                    (route) => false,
+                  );
+                },
               ),
               const SizedBox(height: 32),
               Row(
@@ -121,7 +128,8 @@ class PhoneSignInScreen extends StatelessWidget {
               ),
               const SizedBox(height: 32),
               _buildSocialButton(
-                icon: Image.asset('assets/images/google_logo.png', width: 24, height: 24),
+                icon: Image.asset('assets/images/google_logo.png',
+                    width: 24, height: 24),
                 label: 'Continue with Google',
                 onPressed: () {},
               ),
